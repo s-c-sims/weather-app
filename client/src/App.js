@@ -1,18 +1,23 @@
-
+import logo from './logo.svg';
 import './App.css';
 
-import 'bootswatch/dist/lux/bootstrap.min.css';
-
-function App() 
-{
+function App() {
   return (
     <div className="App">
-      <div className='container p-3 text-center align-items-center justify-content-center'>
-
-        <h1>Hello world</h1>
-
-
-      </div>
+      <header className="App-header">
+        <img src={logo} className="App-logo" alt="logo" />
+        <p>
+          Edit <code>src/App.js</code> and save to reload.
+        </p>
+        <a
+          className="App-link"
+          href="https://reactjs.org"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Learn React
+        </a>
+      </header>
     </div>
   );
 }
