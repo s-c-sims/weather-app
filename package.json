@@ -1,0 +1,22 @@
+{
+  "name": "weather-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/s-c-sims/weather-app.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/s-c-sims/weather-app/issues"
+  },
+  "homepage": "https://github.com/s-c-sims/weather-app#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
