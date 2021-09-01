@@ -20,26 +20,26 @@ function App() {
   const handleSubmit = (e) =>
   {
     e.preventDefault();
+    if(!input.search) setForm(inputBlank)
+    else 
+    { 
+      const options = fetchOptions(JSON.stringify(input));
 
-    const options = fetchOptions(JSON.stringify(input));
-
-    const conn = connect('/post', options);
+      const conn = connect('/post', options);
     
-    conn.then(result => 
-    {
+      conn.then(result => 
+      {
         const rows = getRows(result);
 
         if(!rows) setForm(inputNotFound)
         else
         { 
           setLocation(rows.location.name);
-
         };
 
-    });
-
-
-  }
+      });
+    };
+  };
   return (
     
     <div className="App">
@@ -63,15 +63,18 @@ function App() {
             placeholder='Ex.) Los Angeles, CA'
             onChange={e => setInput({search: e.target.value})}
             />
-            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
 
- 
+
           <div className="invalid-feedback">{form.msg}</div>
           
         </div>
+        
+
         <button type='submit' className="btn btn-primary mt-4">
                   Enter
         </button>
+        <small class='text-muted d-flex p-3'>Wrong location? Try searching by zip code.</small>
+
 
         </form>
   
