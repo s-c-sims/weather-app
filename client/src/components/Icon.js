@@ -1,28 +1,29 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const Icon = (props) =>
 {
-    const [ icon, setIcon ] = useState('');
 
-    const getIcon = () =>
+    const sun = {id: 'sun', name: 'wb sunny'};
+    const cloud = {id: 'cloud', name: 'wb cloudy'};
+
+    const [ icon, setIcon ] = useState({id: '', name: ''});
+
+    useEffect(() =>
     {
-        let icon = '';
-        if(props.weather.includes('sunny')) icon='wb sunny'
-        else icon = 'wb cloudy';
-        return icon;
-    }
+        if(props.weather.includes('sunny')) setIcon(sun)
+        else(setIcon(cloud));
+
+    }, [props.weather]);
 
     
-
     return (
-        <div>
-    
-        <span class="material-icons">
-            {getIcon()}
+        
+        <span class="material-icons" id={icon.id}>
+            {icon.name}
         </span>
 
 
-        </div>
+
           
   
     )
