@@ -1,11 +1,13 @@
 import './App.css';
 import 'bootswatch/dist/lux/bootstrap.min.css';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 
 import { fetchOptions, connect, getRows} from './util/connect';
 import { inputDefault, inputBlank, inputNotFound } from './util/validation';
-import { formatDate} from './util/format';
+import { formatDate, defaultHeadings, rowHeadings } from './util/format';
 import Header from './components/Header';
+
+import Icon from './components/Icon';
 
 function App() {
 
@@ -13,13 +15,13 @@ function App() {
 
   const [ location, setLocation ] = useState('');
 
-  const [ msg, setMsg ] = useState('');
+  const [ headings, setHeadings ] = useState(defaultHeadings);
+
   const [ form, setForm ] = useState(inputDefault);
 
   const [ data, setData ] = useState
   ({
     day: [],
-
     forecast: [],
     low: [],
     high: [],
@@ -66,9 +68,9 @@ function App() {
         else
         { 
           setLocation(rows.location.name);
+          setHeadings(rowHeadings);
 
           let days = [];
-
           let forecast = [];
           let lows = [];
           let highs = [];
@@ -76,24 +78,18 @@ function App() {
           rows.forecast.forEach(day =>
           {
             formatColHead(days, day.day, formatDate(day.date));
-          
             formatData(forecast, day.skytextday);
             formatData(lows, day.low);
             formatData(highs, day.high);
-
-          
-
           });
 
           setData
           ({
             day: days,
-  
             forecast: forecast,
             low: lows,
             high: highs
           });
-
 
         };
 
@@ -146,7 +142,7 @@ function App() {
         <button type='submit' className="btn btn-primary mt-4">
                   Enter
         </button>
-        <small class='text-muted d-flex p-3'>Wrong location? Try searching by zip code.</small>
+        <small className='text-muted d-flex p-3'>Wrong location? Try searching by zip code.</small>
 
 
         </form>
@@ -160,21 +156,30 @@ function App() {
         <div className='row'>
           <table className='table'>
             <thead>
+              <tr>
               <th scope='col'></th>
               {data.day}
+              </tr>
             </thead>
+            <tbody>
             <tr>
-              <th scope='row'>Forecast</th>
+              <th scope='row'></th>
+              <Icon weather='sunny'></Icon>
+
+            </tr>
+            <tr>
+              <th scope='row'></th>
               {data.forecast}
             </tr>
             <tr>
-            <th scope='row'>Low</th>
+            <th scope='row'>{headings.low}</th>
               {data.low}
             </tr>
             <tr>
-            <th scope='row'>High</th>
+            <th scope='row'>{headings.high}</th>
               {data.high}
             </tr>
+            </tbody>
           
 
 

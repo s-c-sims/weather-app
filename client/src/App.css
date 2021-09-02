@@ -31,16 +31,12 @@
 #sun
 {
   color: gold;
+  font-size: 60px;
 }
 
-
-thead th
+th
 {
-
-  border-bottom-width: thin;
-  border-bottom-style: solid;
-  padding-bottom: 0px !important;
-  
+  border-bottom-width: 0px !important;
 
 }
 
