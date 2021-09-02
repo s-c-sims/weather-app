@@ -34,9 +34,13 @@
 }
 
 
-ul li 
+thead th
 {
-  display: inline-block !important;
-  padding: 20px;
+
+  border-bottom-width: thin;
+  border-bottom-style: solid;
+  padding-bottom: 0px !important;
+  
+
 }
 

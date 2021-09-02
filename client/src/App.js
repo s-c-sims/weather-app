@@ -19,7 +19,7 @@ function App() {
   const [ data, setData ] = useState
   ({
     day: [],
-    date: [],
+
     forecast: [],
     low: [],
     high: [],
@@ -68,7 +68,7 @@ function App() {
           setLocation(rows.location.name);
 
           let days = [];
-          let dates = [];
+
           let forecast = [];
           let lows = [];
           let highs = [];
@@ -76,7 +76,7 @@ function App() {
           rows.forecast.forEach(day =>
           {
             formatColHead(days, day.day, formatDate(day.date));
-            formatData(dates, formatDate(day.date));
+          
             formatData(forecast, day.skytextday);
             formatData(lows, day.low);
             formatData(highs, day.high);
@@ -88,7 +88,7 @@ function App() {
           setData
           ({
             day: days,
-            date: dates,
+  
             forecast: forecast,
             low: lows,
             high: highs
@@ -161,25 +161,20 @@ function App() {
           <table className='table'>
             <thead>
               <th scope='col'></th>
-              
               {data.day}
-              
             </thead>
-            
             <tr>
-              <th scope='row'></th>
+              <th scope='row'>Forecast</th>
               {data.forecast}
             </tr>
             <tr>
-            <th scope='row'></th>
+            <th scope='row'>Low</th>
               {data.low}
             </tr>
             <tr>
-            <th scope='row'></th>
+            <th scope='row'>High</th>
               {data.high}
             </tr>
-            
-            
           
 
 
