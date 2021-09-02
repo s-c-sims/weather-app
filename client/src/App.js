@@ -75,7 +75,7 @@ function App() {
 
           rows.forecast.forEach(day =>
           {
-          
+            formatColHead(days, day.day, formatDate(day.date));
             formatData(dates, formatDate(day.date));
             formatData(forecast, day.skytextday);
             formatData(lows, day.low);
