@@ -35,5 +35,4 @@ const formatDate = (date) =>
     return dateFormat;
 };
 
-
 module.exports={formatDate, defaultHeadings, rowHeadings};

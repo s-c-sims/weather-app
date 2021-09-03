@@ -38,5 +38,12 @@ th
 {
   border-bottom-width: 0px !important;
 
+
 }
+thead th
+{
+  padding-bottom: 0px !important;
+}
+
+
 

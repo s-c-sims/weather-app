@@ -17,11 +17,14 @@ function App() {
 
   const [ headings, setHeadings ] = useState(defaultHeadings);
 
+
+
   const [ form, setForm ] = useState(inputDefault);
 
   const [ data, setData ] = useState
   ({
     day: [],
+    icon: [],
     forecast: [],
     low: [],
     high: [],
@@ -30,22 +33,28 @@ function App() {
 
   let container = 'container d-flex text-center align-items-center justify-content-center';
 
-  const formatColHead = (arr, day, date) =>
+  const formatColHead = (index, day, date) =>
   { 
-    let colHead =  
-    <th> 
+
+    return (
+      <th key={index}> 
       <h5>{day}</h5>
       <p>{date}</p>
     </th>
+    );
 
-    arr.push(colHead);
   };
 
-  const formatData = (arr, item) =>
+  const formatData = (index, item) =>
   {
-    let element = <td>{item}</td>
-    arr.push(element)
+    return <td key={index}>{item}</td>
+
   };
+
+  const formatIcon = (index, forecast) =>
+  {
+    return (<td key={index}><Icon weather={forecast}/></td>)
+  }
 
   const connectBackend = () =>
   {
@@ -71,25 +80,39 @@ function App() {
           setHeadings(rowHeadings);
 
           let days = [];
+          let icons = [];
           let forecast = [];
           let lows = [];
           let highs = [];
-
-          rows.forecast.forEach(day =>
+        
+          for (let i = 0; i < rows.forecast.length; i++) 
           {
-            formatColHead(days, day.day, formatDate(day.date));
-            formatData(forecast, day.skytextday);
-            formatData(lows, day.low);
-            formatData(highs, day.high);
-          });
+
+            const day = rows.forecast[i];
+
+            let date = formatDate(day.date);
+
+            let colHead = formatColHead(i, day.day, date);
+
+            days.push(colHead);
+
+            icons.push(formatIcon(i, day.skytextday));
+            forecast.push(formatData(i, day.skytextday));
+            lows.push(formatData(i, day.low));
+            highs.push(formatData(i,  day.high));
+            
+
+          };
 
           setData
           ({
             day: days,
+            icon: icons,
             forecast: forecast,
             low: lows,
             high: highs
           });
+          
 
         };
 
@@ -164,8 +187,7 @@ function App() {
             <tbody>
             <tr>
               <th scope='row'></th>
-              <Icon weather='sunny'></Icon>
-
+              {data.icon}
             </tr>
             <tr>
               <th scope='row'></th>
@@ -180,18 +202,14 @@ function App() {
               {data.high}
             </tr>
             </tbody>
-          
-
 
           </table>
 
       </div>
       </div>
 
-
       </div>
       
-  
   );
 }
 
