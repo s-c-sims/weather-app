@@ -3,15 +3,16 @@ import { useEffect, useState } from "react";
 const Icon = (props) =>
 {
 
-    const sun = {id: 'sun', name: 'wb sunny'};
-    const cloud = {id: 'cloud', name: 'wb cloudy'};
-    const rain = {id: 'rain', name: 'water_drop'};
-    const snow = {id: 'snow', name: 'ac_unit'};
-    
     const [ icon, setIcon ] = useState({id: '', name: ''});
 
     useEffect(() => 
     {
+
+        const sun = {id: 'sun', name: 'wb sunny'};
+        const cloud = {id: 'cloud', name: 'wb cloudy'};
+        const rain = {id: 'rain', name: 'water_drop'};
+        const snow = {id: 'snow', name: 'ac_unit'};
+    
         if(props.weather.includes('Sunny') || props.weather.includes('Clear')) setIcon(sun);
         else if(props.weather.includes('Cloudy')) setIcon(cloud)
         else if(props.weather.includes('Rain')) setIcon(rain)

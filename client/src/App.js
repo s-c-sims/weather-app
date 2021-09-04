@@ -151,16 +151,16 @@ function App() {
             />
 
 
-          <div className="invalid-feedback">{form.msg}</div>
+            <div className="invalid-feedback">{form.msg}</div>
           
-        </div>
+          </div>
         
 
-        <button type='submit' className="btn btn-primary mt-4">
-                  Enter
-        </button>
-        <small className='text-muted d-flex p-3'>Wrong location? Try searching by zip code.</small>
+          <button type='submit' className="btn btn-primary mt-4">
+                    Enter
+          </button>
 
+          <small className='text-muted d-flex p-3'>Wrong location? Try searching by zip code.</small>
 
         </form>
   
@@ -184,7 +184,7 @@ function App() {
               {data.icon}
             </tr>
             <tr>
-              <th scope='row'></th>
+              <th scope='row'>{headings.forecast}</th>
               {data.forecast}
             </tr>
             <tr>

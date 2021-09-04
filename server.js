@@ -55,17 +55,3 @@ app.listen(port, () =>
   console.log(`Example app listening at http://localhost:${port}`)
 });
 
-/*
-Add nodemon as dependency (?) in package.json
-Change from nodemon to node 
-
-README 
-1. cd <project>/client
-2. npm i 
-3. npm start
-4. cd ..
-5. npm run server
-
-
-
-*/

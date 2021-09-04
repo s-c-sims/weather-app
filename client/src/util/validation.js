@@ -20,5 +20,6 @@ const inputNotFound =
 };
 
 
+
 module.exports={inputDefault, inputBlank, inputNotFound}
 
