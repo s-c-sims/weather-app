@@ -17,8 +17,6 @@ function App() {
 
   const [ headings, setHeadings ] = useState(defaultHeadings);
 
-
-
   const [ form, setForm ] = useState(inputDefault);
 
   const [ data, setData ] = useState
@@ -101,7 +99,6 @@ function App() {
             lows.push(formatData(i, day.low));
             highs.push(formatData(i,  day.high));
             
-
           };
 
           setData
@@ -125,10 +122,8 @@ function App() {
     if(!input.search) setForm(inputBlank)
     else 
     { 
-
       const conn = connectBackend();
       handleBackend(conn);
-      
     };
   };
   return (
@@ -138,7 +133,6 @@ function App() {
       <Header></Header>
 
       <div className={container}>
- 
     
         <form noValidate onSubmit={handleSubmit}>
 
@@ -177,7 +171,7 @@ function App() {
 
       <div className={container}>
         <div className='row'>
-          <table className='table'>
+          <table className='table '>
             <thead>
               <tr>
               <th scope='col'></th>

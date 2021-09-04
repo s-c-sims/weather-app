@@ -5,13 +5,17 @@ const Icon = (props) =>
 
     const sun = {id: 'sun', name: 'wb sunny'};
     const cloud = {id: 'cloud', name: 'wb cloudy'};
+    const rain = {id: 'rain', name: 'water_drop'};
+    const snow = {id: 'snow', name: 'ac_unit'};
     
     const [ icon, setIcon ] = useState({id: '', name: ''});
 
     useEffect(() => 
     {
-        if(props.weather.includes('Sunny') || props.weather.includes('Clear')) setIcon(sun)
-        else if(props.weather.includes('Cloudy')) setIcon(cloud);
+        if(props.weather.includes('Sunny') || props.weather.includes('Clear')) setIcon(sun);
+        else if(props.weather.includes('Cloudy')) setIcon(cloud)
+        else if(props.weather.includes('Rain')) setIcon(rain)
+        else if(props.weather.includes('Snow')) setIcon(snow)
         else setIcon(sun)
 
 
@@ -19,7 +23,7 @@ const Icon = (props) =>
 
     
     return (
-        <span class="material-icons" id={icon.id}>
+        <span className="material-icons icon" id={icon.id}>
             {icon.name}
         </span>
 

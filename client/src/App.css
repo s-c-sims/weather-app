@@ -31,19 +31,31 @@
 #sun
 {
   color: gold;
-  font-size: 60px;
+
+}
+
+#sun, #cloud 
+{
+  font-size: 40px;
+
 }
 
 th
 {
   border-bottom-width: 0px !important;
 
+}
+
+.icon
+{
+  margin-right: 50px;
 
 }
-thead th
-{
-  padding-bottom: 0px !important;
-}
+
+
+
+
+
 
 
 
