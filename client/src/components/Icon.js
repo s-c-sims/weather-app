@@ -27,12 +27,8 @@ const Icon = (props) =>
         <span className="material-icons icon" id={icon.id}>
             {icon.name}
         </span>
-
-
-
           
-  
-    )
+    );
 
 };
 
