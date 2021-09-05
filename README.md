@@ -4,10 +4,15 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Directions
 
-In the project directory, you can run:
+To run properly:
 
 ### Install dependencies
+### `cd weather-app-main npm install`
+### `cd weather-app-main/client npm install`
 
+
+
+1
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
