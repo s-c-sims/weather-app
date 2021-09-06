@@ -7,10 +7,10 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 To run properly:
 
 ### 1.) Install dependencies
-####Server
+
 `cd weather-app-main`
 `npm install`
-####Client
+
 `cd weather-app-main/client`
 `npm install`
 
