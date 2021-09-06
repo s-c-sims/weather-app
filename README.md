@@ -16,11 +16,14 @@ To run properly:
 ### 2.) Run server
 From project directory run command:
 ### `node server.js`
+Server should run on http://localhost:5000
 
 ### 3.) Run client
 From project directory run command:
 ### `cd client`
 ### `npm start`
+Client should run on http://localhost:3000
+
 
 
 
