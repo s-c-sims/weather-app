@@ -1,4 +1,6 @@
-import { formatDate } from "../util/format";
+import { formatDate } from "../../util/format";
+
+
 const ColHead = (props) =>
 {
     const date = formatDate(props.date)

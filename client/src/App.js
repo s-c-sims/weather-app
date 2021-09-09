@@ -5,9 +5,11 @@ import React, { useEffect, useState } from 'react';
 import { fetchOptions, connect, getRows} from './util/connect';
 import { inputDefault, inputBlank, inputNotFound } from './util/validation';
 import { defaultHeadings, rowHeadings } from './util/format';
-import Header from './components/Header';
-import ColHead from './components/ColHead';
 
+import Header from './components/Header';
+import TableHead from './components/Table/TableHead';
+import ColHead from './components/Table/ColHead';
+import Row from './components/Table/Row';
 import Icon from './components/Icon';
 
 function App() {
@@ -22,9 +24,9 @@ function App() {
 
   const [ form, setForm ] = useState(inputDefault);
 
-
   const [ data, setData ] = useState
   ({
+    heading: defaultHeadings,
     dayDate: [],
     icon: [],
     forecast: [],
@@ -32,7 +34,15 @@ function App() {
     high: [],
   });
 
+  const formatData = (arr) =>
+  {
 
+    const formatted = rows.map( day => 
+    ( 
+          <td key={day.date}>{day.skytextday}</td>
+    ));
+ 
+  };
 
   useEffect(() =>
   {
@@ -40,7 +50,7 @@ function App() {
     {
   
       setForm(inputDefault);
-      
+
       const dayDates = rows.map(day => 
       ( 
         <ColHead key={day.date} day={day.day} date={day.date}/>
@@ -48,8 +58,6 @@ function App() {
 
       const icons = rows.map( day => 
         ( 
-          
-        
           <td key={day.date}><Icon weather={day.skytextday}/></td>
         ));
 
@@ -70,6 +78,7 @@ function App() {
 
       setData(
       {
+        heading: rowHeadings,
         dayDate: dayDates,
         icon: icons,
         forecast: forecast,
@@ -78,8 +87,6 @@ function App() {
       });
     };
    
-
-
   }, [rows]);
 
 
@@ -101,16 +108,15 @@ function App() {
 
     conn.then(result => 
       {
-        const rows = getRows(result);
+        const resultRows = getRows(result);
 
-        setRows(rows.forecast);
+        setRows(resultRows.forecast);
      
-
-        if(!rows) setForm(inputNotFound);
+        if(!resultRows) setForm(inputNotFound);
         else
         { 
           setHeadings(rowHeadings);
-          setLocation(rows.location.name);
+          setLocation(resultRows.location.name);
         };
  
       });
@@ -154,7 +160,6 @@ function App() {
             />
 
             <div className="invalid-feedback">{form.msg}</div>
-          
           </div>
 
           <button type='submit' className="btn btn-primary mt-4">
@@ -169,33 +174,15 @@ function App() {
 
       <h3 className='text-center p-5'>{location}</h3>
 
-
       <div className={container}>
         <div className='row'>
           <table className='table '>
-            <thead>
-              <tr>
-              <th scope='col'></th>
-              { data.dayDate }
-              </tr>
-            </thead>
+            <TableHead colHead={data.dayDate}/>
             <tbody>
-            <tr>
-              <th scope='row'></th>
-              { data.icon }
-            </tr>
-            <tr>
-              <th scope='row'>{headings.forecast}</th>
-              { data.forecast }
-            </tr>
-            <tr>
-            <th scope='row'>{headings.low}</th>
-            { data.low }
-            </tr>
-            <tr>
-            <th scope='row'>{headings.high}</th>
-            { data.high }
-            </tr>
+            <Row heading='' data={data.icon}/>
+            <Row heading={headings.forecast} data={data.forecast}/>
+            <Row heading={headings.low} data={data.low}/>
+            <Row heading={headings.high} data={data.high}/>
             </tbody>
 
           </table>
