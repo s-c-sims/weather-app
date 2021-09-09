@@ -1,11 +1,12 @@
 import './App.css';
 import 'bootswatch/dist/lux/bootstrap.min.css';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { fetchOptions, connect, getRows} from './util/connect';
 import { inputDefault, inputBlank, inputNotFound } from './util/validation';
-import { formatDate, defaultHeadings, rowHeadings } from './util/format';
+import { defaultHeadings, rowHeadings } from './util/format';
 import Header from './components/Header';
+import ColHead from './components/ColHead';
 
 import Icon from './components/Icon';
 
@@ -15,13 +16,16 @@ function App() {
 
   const [ location, setLocation ] = useState('');
 
+  const [ rows, setRows ] = useState([])
+
   const [ headings, setHeadings ] = useState(defaultHeadings);
 
   const [ form, setForm ] = useState(inputDefault);
 
+
   const [ data, setData ] = useState
   ({
-    day: [],
+    dayDate: [],
     icon: [],
     forecast: [],
     low: [],
@@ -29,30 +33,57 @@ function App() {
   });
 
 
+
+  useEffect(() =>
+  {
+    if(rows) 
+    {
+  
+      setForm(inputDefault);
+      
+      const dayDates = rows.map(day => 
+      ( 
+        <ColHead key={day.date} day={day.day} date={day.date}/>
+      ));
+
+      const icons = rows.map( day => 
+        ( 
+          
+        
+          <td key={day.date}><Icon weather={day.skytextday}/></td>
+        ));
+
+      const forecast = rows.map( day => 
+      ( 
+          <td key={day.date}>{day.skytextday}</td>
+      ));
+ 
+      const lows = rows.map( day => 
+        ( 
+          <td key={day.date}>{day.low}</td>
+        ));
+  
+      const highs = rows.map( day => 
+      ( 
+        <td key={day.date}>{day.high}</td>
+      ));
+
+      setData(
+      {
+        dayDate: dayDates,
+        icon: icons,
+        forecast: forecast,
+        low: lows,
+        high: highs
+      });
+    };
+   
+
+
+  }, [rows]);
+
+
   let container = 'container d-flex text-center align-items-center justify-content-center';
-
-  const formatColHead = (index, day, date) =>
-  { 
-
-    return (
-      <th key={index}> 
-      <h5>{day}</h5>
-      <p>{date}</p>
-    </th>
-    );
-
-  };
-
-  const formatData = (index, item) =>
-  {
-    return <td key={index}>{item}</td>
-
-  };
-
-  const formatIcon = (index, forecast) =>
-  {
-    return (<td key={index}><Icon weather={forecast}/></td>)
-  }
 
   const connectBackend = () =>
   {
@@ -64,56 +95,27 @@ function App() {
   };
 
 
+
   const handleBackend= (conn) =>
   {
+
     conn.then(result => 
       {
         const rows = getRows(result);
 
-        if(!rows) setForm(inputNotFound)
+        setRows(rows.forecast);
+     
 
+        if(!rows) setForm(inputNotFound);
         else
         { 
-          setLocation(rows.location.name);
           setHeadings(rowHeadings);
-
-          let days = [];
-          let icons = [];
-          let forecast = [];
-          let lows = [];
-          let highs = [];
-        
-          for (let i = 0; i < rows.forecast.length; i++) 
-          {
-
-            const day = rows.forecast[i];
-
-            let date = formatDate(day.date);
-
-            let colHead = formatColHead(i, day.day, date);
-
-            days.push(colHead);
-
-            icons.push(formatIcon(i, day.skytextday));
-            forecast.push(formatData(i, day.skytextday));
-            lows.push(formatData(i, day.low));
-            highs.push(formatData(i,  day.high));
-            
-          };
-
-          setData
-          ({
-            day: days,
-            icon: icons,
-            forecast: forecast,
-            low: lows,
-            high: highs
-          });
-          
-
+          setLocation(rows.location.name);
         };
-
+ 
       });
+
+
   };
 
   const handleSubmit = (e) =>
@@ -125,6 +127,7 @@ function App() {
       const conn = connectBackend();
       handleBackend(conn);
     };
+
   };
   return (
     
@@ -150,14 +153,12 @@ function App() {
             onChange={e => setInput({search: e.target.value})}
             />
 
-
             <div className="invalid-feedback">{form.msg}</div>
           
           </div>
-        
 
           <button type='submit' className="btn btn-primary mt-4">
-                    Enter
+              Enter
           </button>
 
           <small className='text-muted d-flex p-3'>Wrong location? Try searching by zip code.</small>
@@ -175,25 +176,25 @@ function App() {
             <thead>
               <tr>
               <th scope='col'></th>
-              {data.day}
+              { data.dayDate }
               </tr>
             </thead>
             <tbody>
             <tr>
               <th scope='row'></th>
-              {data.icon}
+              { data.icon }
             </tr>
             <tr>
               <th scope='row'>{headings.forecast}</th>
-              {data.forecast}
+              { data.forecast }
             </tr>
             <tr>
             <th scope='row'>{headings.low}</th>
-              {data.low}
+            { data.low }
             </tr>
             <tr>
             <th scope='row'>{headings.high}</th>
-              {data.high}
+            { data.high }
             </tr>
             </tbody>
 
