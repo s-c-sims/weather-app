@@ -7,20 +7,24 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 To run properly:
 
 ### 1.) Install dependencies
-### `cd weather-app-main`
-### `npm install`
 
-### `cd weather-app-main/client`
-### `npm install`
+`cd weather-app-main`
+`npm i`
+
+`cd weather-app-main/client`
+`npm i`
 
 ### 2.) Run server
 From project directory run command:
-### `node server.js`
+`node server.js`
+Server runs on http://localhost:5000
 
 ### 3.) Run client
 From project directory run command:
-### `cd client`
-### `npm start`
+`cd client`
+`npm start`
+Client runs on http://localhost:3000
+
 
 
 
