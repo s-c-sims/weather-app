@@ -18,15 +18,9 @@ app.get('/', (req, res) =>
   res.send('Hello World!')
 });
 
-app.get('/get', (req, res) => 
-{
-
-  res.send('GET from backend')
-});
-
 app.post('/post', (req, res) => 
 {
-  
+
   let input = '';
   
   let rows = '';
@@ -35,13 +29,11 @@ app.post('/post', (req, res) =>
 
   weather.find({search: input, degreeType: 'F'}, function(err, result) 
   {
-
     if(err) console.log(err);
 
     Object.keys(result).forEach( key => rows = result[key] )
     
-    if(rows) console.log(rows.forecast);
-
+    if(rows) console.log('Location: ' + rows.location.name)
     else console.log('No results'); 
 
     res.send(result);

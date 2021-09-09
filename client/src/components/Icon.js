@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 
 const Icon = (props) =>
 {
@@ -24,9 +24,11 @@ const Icon = (props) =>
 
     
     return (
+        
         <span className="material-icons icon" id={icon.id}>
             {icon.name}
         </span>
+     
           
     );
 

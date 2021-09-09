@@ -5,7 +5,7 @@ const ColHead = (props) =>
 {
     const date = formatDate(props.date)
     return (
-        <th> 
+        <th scope='col'> 
         <h5>{props.day}</h5>
         <p>{date}</p>
         </th>

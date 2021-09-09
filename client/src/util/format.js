@@ -1,18 +1,4 @@
 
-const defaultHeadings = 
-{
-    forecast: '',
-    low: '',
-    high: ''
-};
-
-const rowHeadings = 
-{
-    forecast: 'Forecast',
-    low: 'Low',
-    high: 'High'
-
-};
 
 const monthNames = 
 [
@@ -35,4 +21,4 @@ const formatDate = (date) =>
     return dateFormat;
 };
 
-module.exports={formatDate, defaultHeadings, rowHeadings};
+module.exports={formatDate};
