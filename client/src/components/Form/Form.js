@@ -23,7 +23,6 @@ const Form = () =>
     const [ rows, setRows ] = useState([]);
 
     const [ data, setData ] = useState({
-
         dayDate: [],
         forecast: [],
         low: [],
