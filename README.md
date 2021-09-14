@@ -2,7 +2,7 @@
 
 ## 1. Install dependencies
 
-`npm run server-install` (or `npm install` from root directory) __
+`npm run server-install` (or `npm install` from root directory)  
 `npm run client-install`
 
 ## 2. Start server
