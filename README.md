@@ -1,29 +1,21 @@
-# Getting Started with Create React App
+# Directions
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## 1. Install dependencies
 
-## Directions
+`npm run server-install` (or `npm install` from root directory)  
+`npm run client-install`
 
-To run properly:
-
-### 1.) Install dependencies
-
-`cd weather-app-main`
-`npm i`
-
-`cd weather-app-main/client`
-`npm i`
-
-### 2.) Run server
-From project directory run command:
-`node server.js`
+## 2. Start server
+`npm run server`
 Server runs on http://localhost:5000
 
-### 3.) Run client
-From project directory run command:
-`cd client`
-`npm start`
+## 3. Start client
+`npm run client`
 Client runs on http://localhost:3000
+
+
+
+
 
 
 
